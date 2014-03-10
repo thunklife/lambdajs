@@ -1,42 +1,42 @@
 var λ = {};
 
 /**
-	λx.x
+    λx.x
 */
 λ.id = function id(x){
-	return x;
+    return x;
 };
 
 /**
-	λs.(s s)
+    λs.(s s)
 */
 λ.applySelf = function applySelf(fn){
-	return fn(fn);
+    return fn(fn);
 };
 
 /**
-	λfn.λarg.(fn arg)
+    λfn.λarg.(fn arg)
 */
 λ.apply = function apply(fn){
-	return function __apply__(arg){
-		return fn.call(null, arg);
-	};
+    return function __apply__(arg){
+        return fn.call(null, arg);
+    };
 };
 
 /**
-	λx.λy.x
+    λx.λy.x
 */
 λ.first = function first(optA){
-	return function __first__(optB){
-		return optA
-	}
+    return function __first__(optB){
+        return optA
+    }
 }
 
 /**
-	λx.λy.y
+    λx.λy.y
 */
 λ.second = function second(optA){
-	return λ.id;
+    return λ.id;
 }
 
 module.exports = λ;
