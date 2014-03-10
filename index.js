@@ -15,7 +15,7 @@ var λ = {};
 };
 
 /**
-    λfn.λarg.(fn arg)
+    λf.λx.(f x)
 */
 λ.apply = function apply(fn){
     return function __apply__(arg){
