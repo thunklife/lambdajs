@@ -19,7 +19,7 @@ var λ = {};
 */
 λ.apply = function apply(fn){
     return function __apply__(arg){
-        return fn.call(null, arg);
+        return fn(arg);
     };
 };
 
@@ -39,4 +39,14 @@ var λ = {};
     return λ.id;
 }
 
+/**
+	λx.λy.λf.((f x) y)
+*/
+λ.pair = function(x){
+	return function(y){
+		return function(f){
+			return f(x)(y);
+		}
+	}
+}
 module.exports = λ;
