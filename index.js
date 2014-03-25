@@ -92,11 +92,25 @@ var λ = {};
  * Like λ.not, the definition above can be further reduce by substituting λ.cond with the argument 'x', resulting in:
  * λx.((x y) λ.untruth)
  *
- * Given a values 'x' and 'y' that represent True or False, return True if both 'x' and 'y' are True.
+ * Given values 'x' and 'y' that represent True or False, return True if both 'x' and 'y' are True.
  */
 λ.and = function and(x){
   return function(y){
     return x(y)(λ.untruth);
+  };
+};
+
+/**
+ * λx.λy.(((λ.cond λ.truth) y) x)
+ *
+ * Similarly to λ.and, the definition above can be reduced by substituting λ.cond with the argument 'x' resulting in:
+ * λx.λy.((x λ.truth) y)
+ *
+ * Given values 'x' and 'y' that represent True or False, if 'x' is True return True, if 'x' is False return 'y'.
+ */
+λ.or = function or(x){
+  return function(y){
+    return x(λ.truth)(y);
   };
 };
 
