@@ -1,5 +1,6 @@
 /**
- * All function names, and definitions take from 'An Introduction to Functional Programming Through Lambda Calculus' by Greg Michaels.
+ * All function names, and definitions take from 'An Introduction to Functional
+ * Programming Through Lambda Calculus' by Greg Michaels.
  * http://amazon.com/gp/product/048647883
  */
 
@@ -7,7 +8,7 @@ var λ = {};
 /**
  * Foundations
  * -----------
- * 
+ *
  * A few foundational functions.
  */
 
@@ -56,8 +57,9 @@ var λ = {};
  * λx.λy.y
  *
  * Given a value 'x' and a value 'y', returns 'y'.
- * This function is the inverse of λ.first. It could be expressed in much the same way as the previous function.
- * However, the returned function is equivilant to the identity function, so simply returning λ.id is simpler.
+ * This function is the inverse of λ.first. It could be expressed in much
+ * the same way as the previous function. However, the returned function is
+ * equivilant to the identity function, so simply returning λ.id is simpler.
  */
 λ.second = function second(x){
   return λ.identity;
@@ -66,8 +68,10 @@ var λ = {};
 /**
  * λx.λy.λf.((f x) y)
  *
- * Given the values 'x' and 'y', and a function 'f', Returns the result of applying 'f' over 'x'  and 'y'.
- * This function illustrates if/else conditions as well as pairs.
+ * Given the values 'x' and 'y', and a function 'f', Returns the result of
+ * applying 'f' over 'x'  and 'y'.This function illustrates if/else conditions
+ * as well as pairs.
+ *
  * For example:
  * λ.pair(λ.id)(λ.apply)(λ.first) //=> λ.id
  */
@@ -82,12 +86,15 @@ var λ = {};
 /**
  * Boolean Logic
  * -------------
- * Consider a conditional expression <condition> ? <true> : <false>
- * This can be expressed as a pair, where the first value represents True, and the second represents false.
+ * Consider a conditional expression:
+ *    <condition> ? <true> : <false>
+ * This can be expressed as a pair, where the first value represents True,
+ * and the second represents false.
  */
 
 /**
- * In Boolean logic, a conditional can be expressed as a pair of expressions, with a condition for selecting the first or second.
+ * In Boolean logic, a conditional can be expressed as a pair of expressions,
+ * with a condition for selecting the first or second.
  */
 λ.cond = λ.pair;
 
@@ -104,10 +111,12 @@ var λ = {};
 /**
  * λx.(((λ.cond λ.untruth) λ.truth) x)
  *
- * The definition above can be reduced further by substituting λ.cond for the argument 'x' resulting in:
- * λx.((λ.untruth) λ.truth)
- *
  * Given a value 'x', which represents True or False, return the inverse.
+ *
+ * The definition above can be reduced further by substituting λ.cond for the
+ * argument 'x' resulting in:
+ * λx.((λ.untruth) λ.truth)
+
  */
 λ.not = function not(x){
   return x(λ.untruth)(λ.truth);
@@ -116,10 +125,12 @@ var λ = {};
 /**
  * λx.λy.(((λ.cond y) λ.untruth) x)
  *
- * Like λ.not, the definition above can be further reduce by substituting λ.cond with the argument 'x', resulting in:
- * λx.((x y) λ.untruth)
+ * Given values 'x' and 'y' that represent True or False, return True if both
+ * 'x' and 'y' are True.
  *
- * Given values 'x' and 'y' that represent True or False, return True if both 'x' and 'y' are True.
+ * Like λ.not, the definition above can be further reduce by substituting
+ * λ.cond with the argument 'x', resulting in:
+ * λx.((x y) λ.untruth)
  */
 λ.and = function and(x){
   return function(y){
@@ -130,10 +141,12 @@ var λ = {};
 /**
  * λx.λy.(((λ.cond λ.truth) y) x)
  *
- * Similarly to λ.and, the definition above can be reduced by substituting λ.cond with the argument 'x' resulting in:
- * λx.λy.((x λ.truth) y)
+ * Given values 'x' and 'y' that represent True or False, if 'x' is True return
+ * True, if 'x' is False return 'y'.
  *
- * Given values 'x' and 'y' that represent True or False, if 'x' is True return True, if 'x' is False return 'y'.
+ * Similarly to λ.and, the definition above can be reduced by substituting
+ * λ.cond with the argument 'x' resulting in:
+ * λx.λy.((x λ.truth) y)
  */
 λ.or = function or(x){
   return function(y){
@@ -152,7 +165,8 @@ var λ = {};
 /**
  * λn.λs((λ.second) n)
  *
- * Given a number 'n', create a pair where λ.second is the first item and 'n' is the second. In this way, we can express numbers as such:
+ * Given a number 'n', create a pair where λ.second is the first item and 'n'
+ * is the second. In this way, we can express numbers as such:
  * one = λ.succ(λ.zero) == [λ.second, λ.zero]
  * two = λ.succ(one) == [λ.second, one] == [λ.second, [λ.second, λ.zero]]
  * And so on.
