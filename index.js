@@ -26,7 +26,7 @@ var λ = {};
 /**
  * λf.λx.(f x)
  *
- * Given a function 'f', and an arugment 'x', applies 'x' over 'f'.
+ * Given a function 'f', and an arugment 'x', applies 'f' over 'x'.
 */
 λ.apply = function apply(f){
   return function(x){
@@ -59,9 +59,9 @@ var λ = {};
 };
 
 /**
- * λx.λy.λf((f x) y)
+ * λx.λy.λf.((f x) y)
  *
- * Given the values 'x' and 'y', and a function 'f', Returns the result of applying 'x' and 'y' over 'f'.
+ * Given the values 'x' and 'y', and a function 'f', Returns the result of applying 'f' over 'x'  and 'y'.
  * This function illustrates if/else conditions as well as pairs.
  * For example:
  * λ.pair(λ.id)(λ.apply)(λ.first) //=> λ.id
@@ -75,14 +75,29 @@ var λ = {};
 };
 
 /**
- * λx.λy.λf((f y) x)
+ * λx.(((λ.cond λ.untruth) λ.truth) x)
  *
- * Given a funciton 'f', which represents True or False, return the inverse.
- * This function is the inverse of λ.cond. However, since we are dealing only with True/False
- * The implementation can be greatly simplified.
+ * The definition above can be reduced further by substituting λ.cond for the argument 'x' resulting in:
+ * λx.((λ.untruth) λ.truth)
+ *
+ * Given a value 'x', which represents True or False, return the inverse.
  */
-λ.not = function not(f){
-  return f(λ.untruth)(λ.truth);
+λ.not = function not(x){
+  return x(λ.untruth)(λ.truth);
+};
+
+/**
+ * λx.λy.(((λ.cond y) λ.untruth) x)
+ *
+ * Like λ.not, the definition above can be further reduce by substituting λ.cond with the argument 'x', resulting in:
+ * λx.((x y) λ.untruth)
+ *
+ * Given a values 'x' and 'y' that represent True or False, return True if both 'x' and 'y' are True.
+ */
+λ.and = function and(x){
+  return function(y){
+    return x(y)(λ.untruth);
+  };
 };
 
 module.exports = λ;
