@@ -99,12 +99,14 @@ var λ = {};
 λ.cond = λ.pair;
 
 /**
- * If a conditional expression can be expressed as a list, then True can be expressed as selecting the first item in the list.
+ * If a conditional expression can be expressed as a list, then True can be
+ * expressed as selecting the first item in the list.
  */
 λ.truth = λ.first;
 
 /**
- * If True is expressed as λ.first, then it follows that False can be expressed as selecting the second item.
+ * If True is expressed as λ.first, then it follows that False can be expressed
+ * as selecting the second item.
  */
 λ.untruth = λ.second;
 
@@ -157,7 +159,8 @@ var λ = {};
 /**
  * Numbers
  * -------
- * Natural numbers can be expressed as a number of successions from zero, and zero can be expressed as the identity function.
+ * Natural numbers can be expressed as a number of successions from zero, and
+ * zero can be expressed as the identity function.
  * and so on.
  */
 λ.zero = λ.identity;
@@ -178,11 +181,14 @@ var λ = {};
 /**
  * λn.(n λ.first)
  *
- * Given a number 'n', returns True if that number is zero, otherwise returns False.
+ * Given a number 'n', returns True if that number is zero, otherwise returns
+ * False.
  *
- * Since a number can be expressed as a pair, where the first item is λ.second, which is λ.untruth or False, we can select the first value from the pair
- * to determine if the number is zero. When λ.first is applied to a number number, λ.untruth is returned. When λ.first is applied to λ.zero, which
- * is λ.identity, it returns itself (which is the same as λ.truth or True)
+ * Since a number can be expressed as a pair, where the first item is λ.second,
+ * which is λ.untruth or False, we can select the first value from the pair
+ * to determine if the number is zero. When λ.first is applied to a number,
+ * λ.untruth is returned. When λ.first is applied to λ.zero, which is
+ * λ.identity, it returns itself (which is the same as λ.truth or True)
  */
 λ.iszero = function(n){
   return n(λ.first);
