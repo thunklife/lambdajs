@@ -41,7 +41,7 @@ var λ = {};
  * This function can be used in pairs to return the first item.
  * It can also be used in conditionals (<expression> ? <true> : <false>), to represent true.
 */
-λ.true = λ.first = function first(x){
+λ.truth = λ.first = function first(x){
   return function(y){
     return x;
   };
@@ -54,7 +54,7 @@ var λ = {};
  * This function is the inverse of λ.true (λ.first). It could be expressed in much the same way as the previous function.
  * However, the returned function is equivilant to the identity function, so simply returning λ.id is simpler.
  */
-λ.false = λ.second = function second(x){
+λ.untruth = λ.second = function second(x){
   return λ.id;
 };
 
@@ -73,4 +73,16 @@ var λ = {};
     };
   };
 };
+
+/**
+ * λx.λy.λf((f y) x)
+ *
+ * Given a funciton 'f', which represents True or False, return the inverse.
+ * This function is the inverse of λ.cond. However, since we are dealing only with True/False
+ * The implementation can be greatly simplified.
+ */
+λ.not = function not(f){
+  return f(λ.untruth)(λ.truth);
+};
+
 module.exports = λ;
