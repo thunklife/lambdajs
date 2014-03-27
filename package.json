@@ -1,0 +1,29 @@
+{
+  "name": "lambdajs",
+  "sources": ["index.js"],
+  "version": "0.0.0",
+  "description": "Lambda calculus in JavaScript. FOR EDUCATIONAL PURPOSES ONLY.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.conf.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wilhelmson/lambdajs.git"
+  },
+  "keywords": [
+    "lambda",
+    "educational",
+    "functional"
+  ],
+  "author": "wilhelmson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wilhelmson/lambdajs/issues"
+  },
+  "devDependencies": {
+    "ink-docstrap": "~0.3.0-0",
+    "jsdoc": "~3.3.0-alpha5"
+  }
+}

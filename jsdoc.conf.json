@@ -1,0 +1,21 @@
+{
+  "source": {
+    "include":["./lib/", "./README.md"]
+  },
+  "plugins": ["plugins/markdown"],
+  "markdown": {
+    "parser": "gfm"
+  },
+  "opts":{
+    "destination": "./docs/",
+    "template": "./node_modules/ink-docstrap/template"
+  },
+  "templates":{
+    "systemName": "λ.js",
+    "theme": "flatly",
+    "linenums": true,
+    "navType": "vertical",
+    "cleverlinks": true,
+    "monospacelinks": false
+  }
+}
