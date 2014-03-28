@@ -12,7 +12,7 @@
   },
   "templates":{
     "systemName": "λ.js",
-    "theme": "flatly",
+    "theme": "simplex",
     "linenums": true,
     "navType": "vertical",
     "cleverlinks": true,
