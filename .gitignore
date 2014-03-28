@@ -11,7 +11,5 @@ pids
 logs
 results
 
-jsdoc.conf.json
-
 npm-debug.log
 node_modules
